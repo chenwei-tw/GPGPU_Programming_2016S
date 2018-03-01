@@ -24,9 +24,11 @@ __global__ void Draw(char *frame) {
 			c = y == H-1 ? '\0' : '\n';
 		} else if (y == 0 or y == H-1 or x == 0 or x == W-2) {
 			c = ':';
+		} else if (x % 3 == 0 || y % 3 == 0) {
+			c = '@';
 		} else {
-			c = ' ';
-		}
+            c = ' ';
+        }
 		frame[y*W+x] = c;
 	}
 }
