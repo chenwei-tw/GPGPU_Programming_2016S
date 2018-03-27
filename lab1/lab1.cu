@@ -21,9 +21,23 @@ void Lab1VideoGenerator::get_info(Lab1VideoInfo &info) {
 	info.fps_d = 1;
 };
 
+__global__ void Draw(uint8_t *yuv, int t)
+{
+    int i = blockIdx.x;
+    int j = threadIdx.x;
+    int idx = i + j * W;
+
+    /* Y */
+    yuv[idx] = t * 255 / NFRAME;
+    /* U */
+    yuv[i / 2 + j * W / 2 + W * H] =  128;
+    /* V */
+    yuv[i + j * W / 4  + W * H + W * H / 4] =  128;
+}
 
 void Lab1VideoGenerator::Generate(uint8_t *yuv) {
-	cudaMemset(yuv, (impl->t)*255/NFRAME, W*H);
-	cudaMemset(yuv+W*H, 128, W*H/2);
+    dim3 grid(W);
+    dim3 block(H);
+    Draw<<<grid, block>>>(yuv, impl->t);
 	++(impl->t);
 }
