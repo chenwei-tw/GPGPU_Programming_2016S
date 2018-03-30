@@ -3,7 +3,10 @@ CFLAGS := -std=c++11
 
 all: video
 
-main: main.cu lab1.cu
+julia.o: julia.cu
+	$(NVCC) $(CFLAGS) -c -o $@ $<
+
+main: main.cu lab1.cu julia.o
 	 $(NVCC) $(CFLAGS) -I../utils -o $@ $^
 
 video: main
