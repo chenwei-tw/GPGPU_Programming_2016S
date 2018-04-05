@@ -12,3 +12,6 @@ main: main.cu lab1.cu julia.o
 video: main
 	./main
 	avconv -i result.y4m result.mkv
+
+clean:
+	rm *.o main result.y4m result.mkv
