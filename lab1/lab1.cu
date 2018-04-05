@@ -26,16 +26,17 @@ void Lab1VideoGenerator::get_info(Lab1VideoInfo &info) {
 __device__ void dwell_color(int *r, int *g, int *b, int dwell)
 {
     if(dwell >= MAX_DWELL) {
-        *r = *g = *b = 128;
+        *r = *g = *b = 0;
     } else {
         if(dwell < 0)
             dwell = 0;
         if(dwell <= CUT_DWELL) {
-            *b = *g = 0;
-            *r = 128 + dwell * 127 / (CUT_DWELL);
-        } else {
+            *b = 99;
+            *g = 71;
             *r = 255;
-            *b = *g = (dwell - CUT_DWELL) * 255 / (MAX_DWELL - CUT_DWELL);
+        } else {
+        //    *r = 30;
+        //    *b = *g = (dwell - CUT_DWELL) * 255 / (MAX_DWELL - CUT_DWELL);
         }
     }
 }
@@ -70,10 +71,9 @@ void Lab1VideoGenerator::Generate(uint8_t *yuv) {
     dim3 grid(H);
     dim3 block(W);
     /* Other arguments */
-    int i = impl->t;
+    int i = impl->t / 2;
     cTYPE c0;
 
-	size_t dataSize= sizeof(int) * W * H;
 	int* hdata;
 	CUDA_CHECK_RETURN(cudaMallocHost(&hdata, sizeof(int) * W * H));
 	int* ddata;

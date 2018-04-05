@@ -7,20 +7,20 @@
 #define cTYPE cuFloatComplex
 #define cMakecuComplex(re,i) make_cuFloatComplex(re,i)
 
-#define MAXITERATIONS 256
+#define MAXITERATIONS 640
 #define MAX_DWELL MAXITERATIONS
-#define CUT_DWELL MAX_DWELL / 4
+#define CUT_DWELL MAX_DWELL / 3
 #define W 1024
 #define H 1024
 #define BLOCKX 32
 #define BLOCKY 32
 #define moveX 0
 #define moveY 0
-#define INCRE 0.00000003
-#define INCI -0.00009
-#define STARTRE -0.75
-#define STARTI 0.09
-#define ZOOM 3.2
+#define INCRE 0.00000035
+#define INCI -0.000092
+#define STARTRE -0.765
+#define STARTI 0.092
+#define ZOOM 2.9
 
 #define CUDA_CHECK_RETURN(value) {											\
 		cudaError_t _m_cudaStat = value;										\

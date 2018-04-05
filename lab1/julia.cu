@@ -17,7 +17,7 @@ __device__ int evolveComplexPoint(cTYPE p, cTYPE c)
 
 __device__ cTYPE convertToComplex(int x, int y, float zoom)
 {
-    TYPE jx = 2 * (x / 1.0 - W / 2.0) / (0.5 * zoom * W) + moveX;
+    TYPE jx = 2 * (x / 1.0) / (0.5 * zoom * W) + moveX;
     TYPE jy = (y / 1.0 - H / 2.0) / (0.5 * zoom * H) + moveY;
     return cMakecuComplex(jx,jy);
 }
