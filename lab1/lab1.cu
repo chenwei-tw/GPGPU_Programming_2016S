@@ -50,7 +50,7 @@ __global__ void Draw(uint8_t *yuv, int *src)
     dwell_color(&r, &g, &b, src[idx]);
 
     /* Y */
-    yuv[idx] = r;
+    yuv[idx] = 0.299 * r + 0.587 * g + 0.114 * b;
 
     if (i % 2 == 0 && j % 2 == 0) {
         /* U */
